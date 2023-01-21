@@ -9,13 +9,16 @@ public class Pizza {
     private boolean toppingAdded;
     private boolean bagAdded;
     private int topping;
+    private boolean isbill;
 
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         this.toppingAdded = false;
         this.bagAdded = false;
+        this.isbill = false;
         this.cheeseAdded = false;
+        this.bill = "";
         if(isVeg){
             this.price = 300;
             this.topping = 70;
@@ -24,7 +27,7 @@ public class Pizza {
             this.price = 400;
             this.topping = 120;
         }
-        this.bill = "Base Price Of The Pizza: " + price + "\n";
+        this.bill += "Base Price Of The Pizza: " + price + "\n";
     }
 
     public int getPrice(){
@@ -54,12 +57,13 @@ public class Pizza {
     }
 
     public String getBill(){
-
-            if(cheeseAdded) this.bill += "Extra Cheese Added: " + 80 + "\n";
-            if(toppingAdded) this.bill += "Extra Toppings Added: " + this.topping + "\n";
-            if(bagAdded) this.bill += "Paperbag Added: " + 20 + "\n";
+        if(!this.isbill) {
+            if (cheeseAdded) this.bill += "Extra Cheese Added: " + 80 + "\n";
+            if (toppingAdded) this.bill += "Extra Toppings Added: " + this.topping + "\n";
+            if (bagAdded) this.bill += "Paperbag Added: " + 20 + "\n";
             this.bill += "Total Price: " + this.price;
-
+            this.isbill = true;
+        }
         return this.bill;
     }
 }
